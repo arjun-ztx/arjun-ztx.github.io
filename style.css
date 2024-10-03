@@ -20,14 +20,17 @@ canvas {
 
 
 .interface{
+    color: #fff;
     position: absolute;
     top: 0;
     left: 0;
     height: 100vh;
     width: 20%;
-    background-color: #ffffff4d;
+    background-color: #ffffff16;
     padding: 1%;
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    border-right: dashed 5px #ffffff51;
+
 }
