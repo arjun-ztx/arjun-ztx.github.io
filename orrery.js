@@ -13,8 +13,12 @@ controls.enablePan = true;
 const light = new THREE.AmbientLight(0xffffff, 1);
 scene.add(light);
 
+class planet{
+    
+}
+
 const planets = [
-    { name: "sun", size: 5, color: 0xffffff, distance: 0},
+    { name: "Sun", size: 5, color: 0xffffff, distance: 0},
     { name: "Mercury", size: 0.075, color: 0xaaaaaa, distance: 10 },
     { name: "Venus", size: 0.087, color: 0xffcc99, distance: 15 },
     { name: "Earth", size: 0.092, color: 0x0000ff, distance: 20 },
@@ -24,6 +28,18 @@ const planets = [
     { name: "Uranus", size: 0.365, color: 0x00ffff, distance: 55 },
     { name: "Neptune", size: 0.354, color: 0x0000ff, distance: 65 }
 ];
+
+//sun
+const SUN = createPlanet(5, 0, 0xffffff)
+
+//mercury
+//venus
+//earth
+//mars
+//jupiter
+//saturn
+//uranus
+//neptune
 
 function createPlanet(size, distance, color) {
     const geometry = new THREE.SphereGeometry(size, 32, 32);

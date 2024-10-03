@@ -10,12 +10,32 @@
     <div id="container"></div>
 
     <div class="interface">
-        <h1>ORRERY</h1>
-        <label for="speed-slider">Simulation speed</label>
-        <input type="range" name="speed-slider" id="simSpeed">
-        <label for="date-selector">Select date</label>
-        <input name="date-selector" id="dateInput" type="date">
-        
+      <h1>ORRERY</h1>
+
+      <label for="modes">Mode:</label>
+      <select name="modes" id="modes">
+        <option value="realtime">realtime</option>
+        <option value="orrery">orrery</option>
+        <option value="column">column</option>
+        <option value="grid">grid</option>
+      </select>
+      <br />
+      <br />
+      <div>show orbits<input name="orbit" type="checkbox" /></div>
+      <br /><br />
+      <label for="speed-slider">Simulation speed:</label>
+      <input type="range" name="speed-slider" id="simSpeed" />
+      <br />
+      <br />
+      <label for="view-selector">View</label>
+      <select name="view" id="view">
+        <option value="solar">solar system</option>
+        <option value="earth">earth</option>
+        <option value="mars">mars</option>
+        <option value="moon">moon</option>
+      </select>
+      <br />
+      <br />
     </div>
 
     <!--Three.js-->
