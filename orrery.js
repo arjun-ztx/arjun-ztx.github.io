@@ -8,29 +8,31 @@ document.body.appendChild(renderer.domElement);
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = true;
+document.body.addEventListener('click', (e) => {
+    if (e.button == 1) {
+        window.alert("middle pinga")
+    }
+});
 
 // Add ambient light (the Sun)
 const light = new THREE.AmbientLight(0xffffff, 1);
 scene.add(light);
 
-class planet{
-    
-}
 
 const planets = [
-    { name: "Sun", size: 5, color: 0xffffff, distance: 0},
-    { name: "Mercury", size: 0.075, color: 0xaaaaaa, distance: 10 },
-    { name: "Venus", size: 0.087, color: 0xffcc99, distance: 15 },
-    { name: "Earth", size: 0.092, color: 0x0000ff, distance: 20 },
-    { name: "Mars", size: 0.049, color: 0xff0000, distance: 25 },
-    { name: "Jupiter", size: 0.9005, color: 0xffa500, distance: 35 },
-    { name: "Saturn", size: 0.837, color: 0xffff00, distance: 45 },
-    { name: "Uranus", size: 0.365, color: 0x00ffff, distance: 55 },
-    { name: "Neptune", size: 0.354, color: 0x0000ff, distance: 65 }
+    { name: "Sun", size: 1, color: 0xf0a0a0, distance: 0 }, // Size = 1 for scale reference
+    { name: "Mercury", size: 0.038, color: 0xaaaaaa, distance: 1.5 }, // Adjusted for scale
+    { name: "Venus", size: 0.095, color: 0xffcc99, distance: 2 }, // Adjusted for scale
+    { name: "Earth", size: 0.096, color: 0x0000ff, distance: 2.5 }, // Adjusted for scale
+    { name: "Mars", size: 0.051, color: 0xff0000, distance: 3 }, // Adjusted for scale
+    { name: "Jupiter", size: 0.223, color: 0xffa500, distance: 4.5 }, // Adjusted for scale
+    { name: "Saturn", size: 0.186, color: 0xffff00, distance: 6 }, // Adjusted for scale
+    { name: "Uranus", size: 0.079, color: 0x00ffff, distance: 10 }, // Adjusted for scale
+    { name: "Neptune", size: 0.076, color: 0x0000ff, distance: 12 } // Adjusted for scale
 ];
 
 //sun
-const SUN = createPlanet(5, 0, 0xffffff)
+//const SUN = createPlanet(5, 0, 0xffffff)
 
 //mercury
 //venus
@@ -40,6 +42,8 @@ const SUN = createPlanet(5, 0, 0xffffff)
 //saturn
 //uranus
 //neptune
+
+const orbits = []; // To store orbit mesh objects
 
 function createPlanet(size, distance, color) {
     const geometry = new THREE.SphereGeometry(size, 32, 32);
@@ -57,7 +61,35 @@ planets.forEach(planet => {
 
 camera.position.z = 30;
 
-// Animation loop
+
+function createOrbit(distance) {
+    const orbitGeometry = new THREE.RingGeometry(distance - 0.01, distance + 0.01, 64); // Thin ring
+    const orbitMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide });
+    const orbit = new THREE.Mesh(orbitGeometry, orbitMaterial);
+    orbit.rotation.x = Math.PI / 2; // Rotate to lie flat in the xy-plane
+    orbit.visible = true; // Default visibility
+    scene.add(orbit);
+    orbits.push(orbit);
+    return orbit;   
+}
+
+// Create planets and orbits
+planets.forEach(planet => {
+    createPlanet(planet.size, planet.distance, planet.color);
+    if (planet.distance > 0) { // No orbit for the Sun
+        createOrbit(planet.distance);
+    }
+});
+
+// Orbit toggle functionality
+const toggleOrbitsCheckbox = document.getElementById('toggleOrbits');
+toggleOrbitsCheckbox.addEventListener('change', (event) => {
+    const isChecked = event.target.checked;
+    orbits.forEach(orbit => {
+        orbit.visible = isChecked;
+    });
+});
+
 function animate() {
     requestAnimationFrame(animate);
 
