@@ -8,11 +8,6 @@ document.body.appendChild(renderer.domElement);
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.enableZoom = true;
 controls.enablePan = true;
-document.body.addEventListener('click', (e) => {
-    if (e.button == 1) {
-        window.alert("middle pinga")
-    }
-});
 
 // Add ambient light (the Sun)
 const light = new THREE.AmbientLight(0xffffff, 1);
