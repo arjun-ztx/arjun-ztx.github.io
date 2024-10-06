@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Orrery</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="container"></div>
+
+    <div class="interface">
+      <h1>ORRERY</h1>
+
+      <label for="modes">Mode:</label>
+      <select name="modes" id="modes">
+        <option value="realtime">realtime</option>
+        <option value="orrery">orrery</option>
+        <option value="column">column</option>
+        <option value="grid">grid</option>
+      </select>
+      <br />
+      <br />
+      <div>show orbits<input name="orbit" type="checkbox" /></div>
+      <br /><br />
+      <label for="speed-slider">Simulation speed:</label>
+      <input type="range" name="speed-slider" id="simSpeed" />
+      <br />
+      <br />
+      <label for="view-selector">View</label>
+      <select name="view" id="view">
+        <option value="solar">solar system</option>
+        <option value="earth">earth</option>
+        <option value="mars">mars</option>
+        <option value="moon">moon</option>
+      </select>
+      <br />
+      <br />
+    </div>
+
+    <!--Three.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!--OrbitControls after Three.js-->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
